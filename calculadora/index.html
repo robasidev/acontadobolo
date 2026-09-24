@@ -1,0 +1,817 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>A Conta do Bolo — calculadora grátis</title>
+<meta name="description" content="Descubra em 2 minutos quanto o seu bolo custa de verdade e quanto a sua hora de trabalho está valendo. Grátis, sem cadastro.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+  :root {
+    --paper:      #FAFAF7;
+    --surface:    #FFFFFF;
+    --field:      #FFFFFF;
+    --ink:        #1A1A17;
+    --ink-soft:   #5E5C54;
+    --ink-faint:  #8A887E;
+    --rule:       #DCDAD1;
+    --rule-soft:  #EAE8E1;
+    --accent:     #8A1E3F;
+    --accent-bg:  #F7EBEF;
+    --loss:       #BE2A18;
+    --loss-bg:    #FBECE9;
+    --gain:       #1B6647;
+    --gain-bg:    #E9F3EE;
+    --shadow:     0 1px 2px rgba(26,26,23,.05), 0 8px 24px -12px rgba(26,26,23,.18);
+
+    --f-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+    --f-body:    "Archivo", system-ui, -apple-system, sans-serif;
+    --f-mono:    "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #131210;
+      --surface:    #1C1B18;
+      --field:      #22211C;
+      --ink:        #F1EFE7;
+      --ink-soft:   #A6A296;
+      --ink-faint:  #7C7969;
+      --rule:       #35332C;
+      --rule-soft:  #2A2822;
+      --accent:     #E5799A;
+      --accent-bg:  #2C1B22;
+      --loss:       #FF7A67;
+      --loss-bg:    #331D18;
+      --gain:       #56C795;
+      --gain-bg:    #14281F;
+      --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #131210;
+    --surface:    #1C1B18;
+    --field:      #22211C;
+    --ink:        #F1EFE7;
+    --ink-soft:   #A6A296;
+    --ink-faint:  #7C7969;
+    --rule:       #35332C;
+    --rule-soft:  #2A2822;
+    --accent:     #E5799A;
+    --accent-bg:  #2C1B22;
+    --loss:       #FF7A67;
+    --loss-bg:    #331D18;
+    --gain:       #56C795;
+    --gain-bg:    #14281F;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 580px;
+    margin-inline: auto;
+    padding-inline: 18px;
+    padding-block: 32px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  /* ---------- header ---------- */
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(34px, 9vw, 46px);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .dek {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    max-width: 44ch;
+  }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 18px;
+    box-shadow: var(--shadow);
+  }
+  .step {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin: 0 0 4px;
+  }
+  .step-n {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 3px;
+    padding: 2px 6px;
+    flex: none;
+  }
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .note {
+    margin: 6px 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- receipt rows ---------- */
+  .rows { display: flex; flex-direction: column; gap: 2px; }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-block: 9px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .row:last-child { border-bottom: 0; }
+
+  .row-label { flex: 1 1 auto; min-width: 0; }
+  .row-label label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .row-hint {
+    display: block;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    line-height: 1.35;
+    margin-top: 1px;
+  }
+
+  .input {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background: var(--field);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 6px 9px;
+    width: 118px;
+    transition: border-color .12s, box-shadow .12s;
+  }
+  .input:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+  }
+  .input span {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    flex: none;
+  }
+  .input input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font-family: var(--f-mono);
+    font-size: 15.5px;
+    font-weight: 700;
+    text-align: right;
+    padding: 0;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .input input::-webkit-outer-spin-button,
+  .input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .input.lg { width: 142px; padding: 9px 11px; }
+  .input.lg input { font-size: 19px; }
+
+  .row.total {
+    border-bottom: 0;
+    border-top: 2px solid var(--ink);
+    margin-top: 8px;
+    padding-top: 12px;
+  }
+  .row.total .row-label label { font-weight: 600; font-size: 15.5px; }
+  .amount {
+    font-family: var(--f-mono);
+    font-size: 17px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  /* ---------- the reveal ---------- */
+  .reveal {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .reveal-top {
+    background: var(--surface);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .verdict {
+    background: var(--loss-bg);
+    color: var(--loss);
+    padding: 22px 18px 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .verdict.is-gain { background: var(--gain-bg); color: var(--gain); }
+
+  .verdict-kicker {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    opacity: .85;
+  }
+  .verdict-num {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(42px, 13vw, 62px);
+    line-height: .95;
+    letter-spacing: -.03em;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .verdict-sub {
+    margin: 10px 0 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 40ch;
+  }
+  .verdict-sub strong { color: inherit; }
+
+  /* ---------- price out ---------- */
+  .price-out {
+    margin-top: 16px;
+    background: var(--accent-bg);
+    border-radius: 4px;
+    padding: 16px 18px;
+  }
+  .price-out p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .price-num {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    color: var(--accent);
+    margin: 4px 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- example banner ---------- */
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--accent-bg);
+    border: 1px dashed var(--accent);
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .banner p { margin: 0; flex: 1 1 200px; }
+  button.clear {
+    flex: none;
+    font-family: var(--f-body);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--accent);
+    border: 0;
+    border-radius: 4px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+  button.clear:hover { opacity: .88; }
+
+  /* ---------- closing ---------- */
+  .close h2 { margin-bottom: 10px; }
+  .close p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15.5px; }
+  .close p:last-child { margin-bottom: 0; }
+  .close strong { color: var(--ink); font-weight: 600; }
+
+  .fineprint {
+    font-size: 13px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 16px;
+  }
+  .fineprint p { margin: 0 0 8px; }
+  .fineprint p:last-child { margin-bottom: 0; }
+
+  /* ---------- linha do gratis + bloco de oferta ---------- */
+  .freeline {
+    margin: -6px 2px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-faint);
+  }
+
+  .cta {
+    border-top: 1px solid var(--rule);
+    padding-top: 26px;
+    margin-top: 6px;
+    position: relative;
+  }
+  .cta h2 { margin-bottom: 10px; }
+  .cta p { margin: 0 0 18px; color: var(--ink-soft); font-size: 15.5px; max-width: 46ch; }
+  .cta-btn {
+    display: inline-block;
+    font-family: var(--f-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: #FAFAF7;
+    background: var(--accent);
+    border: 0;
+    border-radius: 4px;
+    padding: 14px 22px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cta-btn:hover { opacity: .9; }
+  .cta-fine {
+    margin: 10px 0 0;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .cta-close {
+    position: absolute;
+    top: 22px; right: 0;
+    background: none; border: 0;
+    color: var(--ink-faint);
+    font-size: 20px; line-height: 1;
+    padding: 4px 6px;
+    cursor: pointer;
+  }
+  /* estado "conta saudavel": mais quieto */
+  .cta.quiet .cta-btn {
+    background: none;
+    color: var(--accent);
+    padding: 6px 0;
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+  }
+
+  .ref {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--surface);
+    padding: 0 16px;
+  }
+  .ref summary {
+    cursor: pointer;
+    padding: 14px 0;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--accent);
+  }
+  .ref table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .ref th, .ref td { text-align: left; padding: 7px 0; border-bottom: 1px dotted var(--rule); font-size: 14px; }
+  .ref th { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .ref td:last-child { text-align: right; font-family: var(--f-mono); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .ref p { font-size: 13px; color: var(--ink-faint); line-height: 1.5; margin: 0 0 14px; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  @media (max-width: 400px) {
+    .input { width: 104px; }
+    .input.lg { width: 126px; }
+    .row-hint { font-size: 12px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Calculadora</p>
+    <h1>A Conta do Bolo</h1>
+    <p class="dek">Você já sabe quanto cobra. O que quase ninguém calcula é quanto <em>custa</em> — e quanto sobra pra você no fim.</p>
+  </header>
+
+  <div class="banner">
+    <p><strong>Já veio preenchida com preços médios do Brasil</strong>, pra você não começar do zero.
+    Troque cada um pelo preço do <em>seu</em> mercado — é assim que a conta fica sua de verdade.</p>
+    <button class="clear" id="btn-clear" type="button">Limpar tudo</button>
+  </div>
+
+  <!-- ETAPA 1 -->
+  <section class="card">
+    <div class="step"><span class="step-n">1</span><h2>Quanto você cobra hoje</h2></div>
+    <p class="note">O preço de um bolo que você já vendeu. Não o que você acha que deveria cobrar — o que você cobrou de verdade.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="row-label">
+          <label for="preco">Preço cobrado</label>
+          <span class="row-hint">Um bolo só, o que a cliente pagou</span>
+        </div>
+        <div class="input lg"><span>R$</span><input id="preco" type="text" inputmode="decimal" value="50,00"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETAPA 2 -->
+  <section class="card">
+    <div class="step"><span class="step-n">2</span><h2>O que saiu do seu bolso</h2></div>
+    <p class="note">Aqui é onde a conta costuma furar. Não é que a pessoa erre a soma — é que metade dessas linhas nem entra na cabeça na hora de dar o preço.</p>
+    <div class="rows">
+
+      <div class="row">
+        <div class="row-label">
+          <label for="ingredientes">Ingredientes</label>
+          <span class="row-hint">Tudo que entrou no bolo. Não sabe somar? Veja a tabela no fim da página</span>
+        </div>
+        <div class="input"><span>R$</span><input id="ingredientes" type="text" inputmode="decimal" value="28,00"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="gas">Gás</label>
+          <span class="row-hint">1h de forno. Botijão a R$114 (ANP, set/2026) dá ~R$2,20</span>
+        </div>
+        <div class="input"><span>R$</span><input id="gas" type="text" inputmode="decimal" value="2,20"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="energia">Energia</label>
+          <span class="row-hint">Batedeira + geladeira + luz ≈ 0,55 kWh. A ~R$0,95 o kWh dá R$0,52</span>
+        </div>
+        <div class="input"><span>R$</span><input id="energia" type="text" inputmode="decimal" value="0,55"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="embalagem">Embalagem</label>
+          <span class="row-hint">Caixa, base, cinta, fita, sacola</span>
+        </div>
+        <div class="input"><span>R$</span><input id="embalagem" type="text" inputmode="decimal" value="7,00"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="descartaveis">Descartáveis</label>
+          <span class="row-hint">Saco de confeitar, papel manteiga, luva, papel toalha</span>
+        </div>
+        <div class="input"><span>R$</span><input id="descartaveis" type="text" inputmode="decimal" value="3,00"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="entrega">Entrega</label>
+          <span class="row-hint">Gasolina, ônibus, aplicativo — mesmo quando você mesma leva</span>
+        </div>
+        <div class="input"><span>R$</span><input id="entrega" type="text" inputmode="decimal" value="6,00"></div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <label for="perdas">Erros e perdas</label>
+          <span class="row-hint">A massa que solou, o chantilly que talhou. Em % do material</span>
+        </div>
+        <div class="input"><span>%</span><input id="perdas" type="text" inputmode="decimal" value="5"></div>
+      </div>
+
+      <div class="row total">
+        <div class="row-label"><label>Custo do bolo</label></div>
+        <div class="amount" id="out-custo">R$ 0,00</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETAPA 3 -->
+  <section class="card">
+    <div class="step"><span class="step-n">3</span><h2>E o seu tempo</h2></div>
+    <p class="note">Esta é a linha que nunca entra na conta. Conte tudo: a compra, a massa, o forno, o recheio, a decoração, a limpeza da cozinha e a conversa no WhatsApp com a cliente.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="row-label">
+          <label for="horas">Horas neste bolo</label>
+          <span class="row-hint">Do mercado até a entrega</span>
+        </div>
+        <div class="input lg"><span>h</span><input id="horas" type="text" inputmode="decimal" value="4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVELAÇÃO -->
+  <section class="reveal" aria-live="polite">
+    <div class="reveal-top">
+      <div class="rows">
+        <div class="row">
+          <div class="row-label"><label>Você cobrou</label></div>
+          <div class="amount" id="out-preco">R$ 0,00</div>
+        </div>
+        <div class="row">
+          <div class="row-label"><label>Custou</label></div>
+          <div class="amount" id="out-custo2">R$ 0,00</div>
+        </div>
+        <div class="row">
+          <div class="row-label"><label>Sobrou pra você</label></div>
+          <div class="amount" id="out-sobra">R$ 0,00</div>
+        </div>
+      </div>
+    </div>
+    <div class="verdict" id="verdict">
+      <p class="verdict-kicker" id="verdict-kicker">A sua hora de trabalho vale</p>
+      <p class="verdict-num" id="out-hora">R$ 0,00</p>
+      <p class="verdict-sub" id="verdict-sub"></p>
+    </div>
+  </section>
+
+  <p class="freeline">Essa conta é grátis e continua grátis, com ou sem compra. O número acima é
+  seu: salve, refaça, mude os valores quantas vezes quiser.</p>
+
+  <!-- ETAPA 4 -->
+  <section class="card">
+    <div class="step"><span class="step-n">4</span><h2>Então quanto cobrar</h2></div>
+    <p class="note">Não é um preço que eu inventei. É a sua própria conta, com uma linha a mais: você sendo paga.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="row-label">
+          <label for="hora-alvo">Quanto você quer ganhar por hora</label>
+          <span class="row-hint">O valor de uma hora do seu trabalho, decidido por você</span>
+        </div>
+        <div class="input lg"><span>R$</span><input id="hora-alvo" type="text" inputmode="decimal" value="25,00"></div>
+      </div>
+    </div>
+    <div class="price-out">
+      <p>O preço deste bolo passa a ser</p>
+      <p class="price-num" id="out-preco-novo">R$ 0,00</p>
+      <p id="out-diferenca" style="margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- BLOCO DE OFERTA — aparece depois, nunca de imediato -->
+  <section class="cta" id="cta" hidden aria-live="polite">
+    <button class="cta-close" id="cta-close" type="button" aria-label="Fechar">&times;</button>
+    <h2 id="cta-title"></h2>
+    <p id="cta-body"></p>
+    <a class="cta-btn" id="cta-btn" href="#">VER AS 15 AÇÕES</a>
+    <p class="cta-fine">R$147, pagamento único · 7 dias de garantia pela Hotmart</p>
+  </section>
+
+  <details class="ref">
+    <summary>Tabela de preços médios — para consultar se você não anotou</summary>
+    <table>
+      <tr><th>Item</th><th>Preço médio</th></tr>
+      <tr><td>Ovos (dúzia)</td><td>R$ 11,50</td></tr>
+      <tr><td>Açúcar (1 kg)</td><td>R$ 4,99</td></tr>
+      <tr><td>Farinha de trigo (1 kg)</td><td>R$ 3,00</td></tr>
+      <tr><td>Leite (1 L)</td><td>R$ 5,39</td></tr>
+      <tr><td>Botijão de gás (13 kg)</td><td>R$ 114,00</td></tr>
+      <tr><td>Energia (1 kWh, com impostos)</td><td>R$ 0,95</td></tr>
+    </table>
+    <p>Médias nacionais de 2026 (ANP e pesquisas de cesta básica). <strong>Na sua cidade muda</strong>
+    — e é o seu preço que importa, não o meu. Leite condensado, creme de leite, chocolate, manteiga,
+    embalagem e descartáveis variam demais por região e por marca: esses vale olhar a última nota do
+    mercado.</p>
+  </details>
+
+  <div class="fineprint">
+    <p><strong>O que esta conta ainda não inclui:</strong> taxa de cartão ou de maquininha, aluguel, internet, o desgaste das suas formas e da batedeira, e imposto se você for formalizada. Tudo isso empurra o preço para cima, nunca para baixo.</p>
+    <p>Os números começam preenchidos com um exemplo. Nada do que você digita aqui é enviado para lugar nenhum — fica só no seu celular.</p>
+  </div>
+
+</div>
+
+<script>
+  var IDS = ['preco','ingredientes','gas','energia','embalagem','descartaveis','entrega','perdas','horas','hora-alvo'];
+  var KEY = 'conta-do-bolo-v1';
+
+  var brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+  function el(id) { return document.getElementById(id); }
+
+  function num(id) {
+    var raw = (el(id).value || '').trim().replace(/\s/g, '').replace(/\./g, '').replace(',', '.');
+    var n = parseFloat(raw);
+    return isFinite(n) && n >= 0 ? n : 0;
+  }
+
+  function save() {
+    try {
+      var data = {};
+      IDS.forEach(function (id) { data[id] = el(id).value; });
+      localStorage.setItem(KEY, JSON.stringify(data));
+    } catch (e) { /* modo privado, dados bloqueados — segue sem salvar */ }
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return false;
+      var data = JSON.parse(raw);
+      IDS.forEach(function (id) {
+        if (typeof data[id] === 'string') el(id).value = data[id];
+      });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function calc() {
+    var preco    = num('preco');
+    var material = num('ingredientes') + num('gas') + num('energia')
+                 + num('embalagem') + num('descartaveis') + num('entrega');
+    var perdas   = num('perdas');
+    var custo    = material * (1 + perdas / 100);
+    var horas    = num('horas');
+    var sobra    = preco - custo;
+
+    el('out-custo').textContent  = brl.format(custo);
+    el('out-custo2').textContent = brl.format(custo);
+    el('out-preco').textContent  = brl.format(preco);
+
+    var elSobra = el('out-sobra');
+    elSobra.textContent = brl.format(sobra);
+    elSobra.style.color = sobra < 0 ? 'var(--loss)' : 'var(--ink)';
+
+    // o número que importa: quanto a hora dela está valendo hoje
+    var verdict = el('verdict');
+    var kicker  = el('verdict-kicker');
+    var sub     = el('verdict-sub');
+
+    var porHora = horas > 0 ? sobra / horas : null;
+
+    if (horas <= 0) {
+      verdict.classList.remove('is-gain');
+      kicker.textContent = 'Falta um número';
+      el('out-hora').textContent = '—';
+      sub.textContent = 'Preencha quantas horas esse bolo levou, na etapa 3. Sem isso não dá para saber quanto você está ganhando por hora.';
+    } else {
+      el('out-hora').textContent = brl.format(porHora);
+      verdict.classList.toggle('is-gain', porHora > 0);
+      kicker.textContent = 'A sua hora de trabalho está valendo';
+
+      if (porHora < 0) {
+        sub.innerHTML = 'Este valor é negativo. Quer dizer que, depois de pagar tudo o que esse bolo consumiu, <strong>você tirou dinheiro do seu bolso para entregá-lo</strong>. Não foi trabalho de graça: foi trabalho pago por você.';
+      } else if (porHora < 6) {
+        sub.innerHTML = 'Você está trabalhando, e sobra alguma coisa — mas por hora isso é menos do que quase qualquer trabalho pago no Brasil. <strong>O bolo não está barato. O seu tempo é que está.</strong>';
+      } else {
+        sub.innerHTML = 'Você está sendo paga pelo seu tempo. Agora a pergunta muda: <strong>é esse o valor que você quer que uma hora sua tenha?</strong>';
+      }
+    }
+
+    // o preço que paga o trabalho
+    var alvo  = num('hora-alvo');
+    var novo  = custo + horas * alvo;
+    el('out-preco-novo').textContent = brl.format(novo);
+
+    // Gatilho do bloco de oferta. Nunca imediato.
+    // Sinal de engajamento: ela mexeu em pelo menos 2 campos diferentes.
+    // Alem disso, ~20s com resultado valido — mas NAO na conta saudavel,
+    // onde oferta no cronometro denuncia que a ferramenta esperava a hora de vender.
+    if (horas > 0 && preco > 0 && !ctaMontado && !ctaFechado()) {
+      ctaEstado = porHora < 0 ? 'negativo' : (porHora < 6 ? 'apertado' : 'saudavel');
+      if (nMexidos >= 2) {
+        montaCta(ctaEstado);
+      } else if (ctaEstado !== 'saudavel' && !ctaTimer) {
+        ctaTimer = setTimeout(function () { montaCta(ctaEstado); }, 20000);
+      }
+    }
+
+    var dif = el('out-diferenca');
+    if (preco > 0 && novo > 0) {
+      var delta = novo - preco;
+      if (delta > 0.005) {
+        dif.innerHTML = 'São <strong>' + brl.format(delta) + '</strong> a mais do que você cobra hoje, por bolo.';
+      } else if (delta < -0.005) {
+        dif.innerHTML = 'Você já cobra <strong>' + brl.format(-delta) + '</strong> acima disso. A sua conta fecha.';
+      } else {
+        dif.textContent = 'É exatamente o que você já cobra.';
+      }
+    } else {
+      dif.textContent = '';
+    }
+  }
+
+  // ---------- bloco de oferta ----------
+  var LINK_OFERTA = '/#comprar';
+  var CTA_KEY = 'conta-do-bolo-cta-fechado';
+  var camposMexidos = {}, nMexidos = 0, ctaMontado = false, ctaTimer = null, ctaEstado = null;
+
+  var CTA = {
+    negativo: {
+      t: 'Esse número não começou hoje. Só ficou visível hoje.',
+      b: 'Não é erro de conta — é o que vinha acontecendo sem aparecer. E agora você tem o preço certo na mão, de graça. Só que preço conserta quanto cobrar; não faz aparecer de quem cobrar. A outra metade é encomenda: De Elogio a Encomenda, 15 ações, uma por dia útil, uma hora cada.',
+      btn: 'VER AS 15 AÇÕES', quiet: false
+    },
+    apertado: {
+      t: 'Fechou no positivo. E fechou apertado.',
+      b: 'Com a hora nesse valor, o preço já não é o buraco maior. O que continua parado é a encomenda — e isso nenhuma conta resolve. Refazer o cálculo dez vezes não faz ninguém pedir bolo. De Elogio a Encomenda é a parte de ir atrás: 15 ações, uma por dia útil, uma hora cada.',
+      btn: 'VER O QUE VEM DEPOIS DO PREÇO', quiet: false
+    },
+    saudavel: {
+      t: 'Essa parte já está resolvida. A outra não é preço.',
+      b: 'O preço está de pé. E preço de pé não faz o pedido aparecer — quem pede é quem lembrou de você essa semana. A calculadora não mede isso. De Elogio a Encomenda é só sobre essa parte: 15 ações, uma por dia útil, uma hora cada. Nenhuma pede seguidor nem aparecer.',
+      btn: 'VER O PLANO DE 3 SEMANAS', quiet: true
+    }
+  };
+
+  function ctaFechado() {
+    try { return localStorage.getItem(CTA_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  function montaCta(estado) {
+    if (ctaMontado || ctaFechado()) return;
+    var c = CTA[estado];
+    el('cta-title').textContent = c.t;
+    el('cta-body').textContent = c.b;
+    var btn = el('cta-btn');
+    btn.textContent = c.btn;
+    btn.href = LINK_OFERTA;
+    el('cta').classList.toggle('quiet', c.quiet);
+    el('cta').hidden = false;
+    ctaMontado = true;
+  }
+
+  el('cta-close').addEventListener('click', function () {
+    el('cta').hidden = true;
+    ctaMontado = true;
+    try { localStorage.setItem(CTA_KEY, '1'); } catch (e) {}
+  });
+
+  IDS.forEach(function (id) {
+    el(id).addEventListener('input', function () {
+      if (!camposMexidos[id]) { camposMexidos[id] = true; nMexidos++; }
+      calc(); save();
+    });
+  });
+
+  // Conta saudavel: sem timer. So aparece se ela rolar ate o fim da pagina.
+  window.addEventListener('scroll', function () {
+    if (ctaMontado || ctaEstado !== 'saudavel') return;
+    var fim = document.body.scrollHeight - window.innerHeight - 120;
+    if (window.scrollY >= fim) montaCta('saudavel');
+  }, { passive: true });
+
+  el('btn-clear').addEventListener('click', function () {
+    IDS.forEach(function (id) { el(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    calc();
+    el('preco').focus();
+  });
+
+  load();
+  calc();
+</script>
+
+</body></html>

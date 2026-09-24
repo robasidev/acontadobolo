@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>De Elogio a Encomenda — A Conta do Bolo</title>
+<meta name="description" content="Todo mundo elogia. Ninguém encomenda. Em 15 ações, uma por dia útil, você para de esperar e vai atrás. R$147, pagamento único, 7 dias de garantia.">
+<!-- ⚠️ Rascunho ainda não publicado de verdade — ver banner de pendências abaixo. Remover a
+     linha de robots e o banner quando os 5 dados da Hotmart estiverem confirmados. -->
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+  :root {
+    --paper: #FAFAF7; --surface: #FFFFFF; --ink: #1A1A17; --ink-soft: #5E5C54;
+    --ink-faint: #8A887E; --rule: #DCDAD1; --rule-soft: #EAE8E1;
+    --accent: #8A1E3F; --accent-bg: #F7EBEF; --loss: #BE2A18; --gain: #1B6647;
+    --f-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+    --f-body: "Archivo", system-ui, -apple-system, sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131210; --surface: #1C1B18; --ink: #F1EFE7; --ink-soft: #A6A296;
+      --ink-faint: #7C7969; --rule: #35332C; --rule-soft: #2A2822;
+      --accent: #E5799A; --accent-bg: #2C1B22; --loss: #FF7A67; --gain: #56C795;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body);
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 680px; margin-inline: auto; padding-inline: 20px; }
+  section { padding-block: 48px; border-bottom: 1px solid var(--rule-soft); }
+  section:last-of-type { border-bottom: 0; }
+  h1, h2, h3 { font-family: var(--f-display); font-weight: 800; line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; }
+  h1 { font-size: clamp(30px, 7vw, 44px); margin: 10px 0 16px; }
+  h2 { font-size: clamp(24px, 5.5vw, 32px); margin: 0 0 8px; }
+  h3 { font-size: clamp(18px, 4vw, 22px); font-weight: 700; margin: 0 0 10px; }
+  p { margin: 0 0 16px; color: var(--ink); }
+  .dek { font-size: 18px; color: var(--ink-soft); max-width: 52ch; }
+  .eyebrow { font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: .1em;
+    color: var(--ink-soft); margin: 0 0 6px; }
+  strong { color: var(--ink); }
+  a { color: var(--accent); }
+  .btn { display: inline-block; font-family: var(--f-body); font-weight: 600; font-size: 16px;
+    color: #FAFAF7; background: var(--accent); border-radius: 4px; padding: 16px 24px;
+    text-decoration: none; text-align: center; }
+  .btn:hover { opacity: .9; }
+  .btn-sub { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink-faint); margin: 10px 0 0; }
+  .btn-wrap { text-align: center; margin: 28px 0; }
+  .img-slot { border: 1.5px dashed var(--rule); border-radius: 6px; padding: 28px 18px;
+    text-align: center; color: var(--ink-faint); font-size: 13.5px; line-height: 1.5; margin: 20px 0; background: var(--surface); }
+  .img-slot b { display: block; color: var(--ink-soft); font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 22px; margin: 20px 0; }
+  .badge { display: inline-block; font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: var(--accent-bg);
+    border-radius: 3px; padding: 4px 8px; margin-bottom: 10px; }
+  blockquote { margin: 24px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--accent);
+    font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 4.5vw, 26px); line-height: 1.2; }
+  .list-clean { list-style: none; padding: 0; margin: 16px 0; }
+  .list-clean li { padding: 10px 0; border-bottom: 1px dotted var(--rule); }
+  .list-clean li:last-child { border-bottom: 0; }
+  .price-block { text-align: center; background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 32px 22px; margin: 24px 0; }
+  .price-num { font-family: var(--f-mono); font-weight: 700; font-size: clamp(38px, 10vw, 52px); margin: 4px 0; }
+  .week { margin: 28px 0; }
+  .week h4 { font-family: var(--f-display); font-weight: 700; font-size: 15px; letter-spacing: .02em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 4px; }
+  .week-sub { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 12px; }
+  ol.acoes { list-style: none; counter-reset: acao; padding: 0; margin: 0; }
+  ol.acoes li { counter-increment: acao; padding: 10px 0 10px 34px; position: relative;
+    border-bottom: 1px dotted var(--rule); font-size: 15px; }
+  ol.acoes li:last-child { border-bottom: 0; }
+  ol.acoes li::before { content: counter(acao); position: absolute; left: 0; top: 9px;
+    font-family: var(--f-mono); font-weight: 700; font-size: 12px; color: var(--accent);
+    background: var(--accent-bg); border-radius: 3px; width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center; }
+  .faq details { border-bottom: 1px dotted var(--rule); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  .faq p { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; }
+  .no-list { padding: 0; margin: 16px 0; list-style: none; }
+  .no-list li { padding: 6px 0 6px 26px; position: relative; color: var(--ink-soft); }
+  .no-list li::before { content: "✕"; position: absolute; left: 0; color: var(--loss); font-weight: 700; }
+  .yes-box { background: var(--accent-bg); border-radius: 6px; padding: 18px 20px; margin-top: 18px; font-weight: 600; }
+  footer { padding: 32px 0 60px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.6; }
+  .pendente { background: #FFE8A3; color: #5A4300; border-radius: 3px; padding: 1px 6px; font-family: var(--f-mono); font-size: 13px; white-space: nowrap; }
+  @media (prefers-color-scheme: dark) { .pendente { background: #4A3B10; color: #FFE8A3; } }
+  .dev-banner { background: #FFE8A3; color: #3A2E00; font-family: var(--f-mono); font-size: 13px;
+    padding: 14px 20px; line-height: 1.6; }
+  .dev-banner a { color: #3A2E00; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="dev-banner">
+  ⚠️ RASCUNHO — não publicado de verdade. Faltam os 5 dados da Hotmart (ver
+  <code>CONTINUAR.md</code>, item 2). Remova este aviso e o <code>&lt;meta name="robots"&gt;</code>
+  no <code>&lt;head&gt;</code> só depois de trocar todos os <span class="pendente">campos pendentes</span> desta página.
+</div>
+
+<div class="wrap">
+
+  <!-- DOBRA 1 — CAPTURA -->
+  <section id="topo">
+    <p class="eyebrow">PARA QUEM FAZ BOLO BOM E CANSOU DE OUVIR SÓ ELOGIO</p>
+    <h1>Todo mundo elogia.<br>Ninguém encomenda.</h1>
+    <p class="dek">Em 15 ações, uma por dia útil, você para de esperar e vai atrás. Uma conta que diz quanto cobrar antes de alguém perguntar. E 15 ações — cada uma cabe em uma hora, feita pelo celular, sem precisar aparecer.</p>
+
+    <div class="img-slot">
+      <b>Imagem 1</b>
+      Print real da calculadora aberta no celular, bolo comum preenchido, em destaque
+      "a sua hora de trabalho está valendo R$ __" com o número negativo. Tela de celular
+      de verdade, dedo na tela, sem moldura de marketing — tem que parecer que alguém
+      abriu no ônibus.
+    </div>
+    <p style="font-size:14px;color:var(--ink-faint)">Essa conta é grátis e continua grátis, com ou sem compra. Faça a sua antes de decidir qualquer coisa: <a href="/calculadora/">abrir a calculadora</a></p>
+
+    <div class="btn-wrap">
+      <a class="btn" href="#comprar">QUERO IR ATRÁS DAS ENCOMENDAS</a>
+      <p class="btn-sub">Acesso imediato · R$147 à vista, pagamento único · 7 dias de garantia</p>
+    </div>
+  </section>
+
+  <!-- DOBRA 2 — CONEXÃO -->
+  <section>
+    <h2>"Ficou lindo, viu! Depois eu te chamo."</h2>
+    <p><strong>Depois ninguém chama.</strong></p>
+    <p>Você já ouviu isso na festa, no grupo da família, na porta da escola. Todo mundo acha o seu bolo maravilhoso. Todo mundo pede a receita. E a encomenda não vem.</p>
+    <p>Aí acontece o resto:</p>
+    <ul class="list-clean">
+      <li>Alguém pergunta o preço e <strong>você enrola pra responder</strong>, porque não sabe se o seu número está caro.</li>
+      <li>Quando responde, vem o <strong>"tem um descontinho?"</strong> — e você dá, com vergonha.</li>
+      <li>Você trabalha o dia inteiro, entrega, recebe elogio, e <strong>no fim do mês não sobra nada</strong>.</li>
+      <li>Em casa ainda chamam de <strong>"os bolinhos"</strong>, como se fosse passatempo.</li>
+    </ul>
+    <p>Não é falta de talento. Você já provou que sabe fazer — quem elogia não está mentindo.</p>
+    <p>O que ninguém te ensinou é a outra metade: <strong>quanto cobrar, e como fazer as pessoas lembrarem de você na hora de encomendar.</strong></p>
+    <p>Você não é amadora. Você é uma mulher com um produto bom e sem quem avise que ele existe. Isso tem conserto, e o conserto não é fazer bolo melhor.</p>
+    <div class="img-slot">
+      <b>Imagem 2 — discreta</b>
+      Print de conversa de WhatsApp (nomes borrados): "amei o bolo!! qualquer coisa eu te chamo 😍" — e o silêncio depois. Sem coitadismo, sem mulher chorando.
+    </div>
+  </section>
+
+  <!-- DOBRA 3 — RACIONALIDADE -->
+  <section>
+    <h2>O problema não é o seu bolo.</h2>
+    <h3 style="color:var(--ink-soft);font-weight:600">É que ninguém foi avisado. E quem foi, não sabe o preço.</h3>
+    <p>São dois buracos, e nenhum é técnica.</p>
+    <p><strong>Buraco 1 — ninguém foi avisado.</strong><br>
+    Você acha que as pessoas sabem que você vende. Elas não sabem. Elas sabem que você <strong>faz</strong> — que é outra coisa. A vizinha que te elogiou não guardou seu contato como "confeiteira". Guardou como "a Ana do 302". Quando o filho dela fizer aniversário, ela vai lembrar da loja da esquina, porque a loja tem placa e você não tem nem status no WhatsApp.</p>
+    <p><strong>Buraco 2 — quem foi avisado não sabe o preço.</strong><br>
+    Quem pergunta e não recebe resposta rápida desiste. Quem recebe um número que você falou gaguejando, sente. E preço que sai inseguro convida o "descontinho".</p>
+    <p>E tem o que ninguém fala: quando você não calcula, <strong>o dinheiro sai do seu bolso</strong>. Gás, energia, embalagem, o deslocamento pra comprar o ingrediente que faltou, as três horas de pé. Nada disso aparece no preço que você deu de cabeça. O bolo sai da sua casa e a conta fica.</p>
+    <blockquote>Seu bolo não está barato.<br>Você é que está pagando para fazer.</blockquote>
+  </section>
+
+  <!-- DOBRA 4 — CAIXA ABERTA -->
+  <section>
+    <h2>Em vez de dizer que é bom, eu abro.</h2>
+    <p>Você já comprou coisa na internet que chegou diferente do anúncio. Então não vou te pedir confiança. Vou te mostrar um dia inteiro, um script inteiro e um orçamento inteiro — de graça, aqui, antes de você pagar nada.</p>
+
+    <div class="card">
+      <p class="badge">A ação 1, inteira</p>
+      <h3>Seu preço, e o primeiro orçamento enviado</h3>
+      <p style="color:var(--ink-faint);font-size:14px;margin-bottom:16px">Tempo: 1 hora · Custo: R$0 · Você não precisa aparecer</p>
+      <p><strong>O que você vai ter no fim desta hora:</strong> um preço definido para o seu bolo mais pedido, anotado, e <strong>um orçamento já enviado</strong> para uma pessoa que te perguntou preço e você enrolou pra responder.</p>
+      <p><strong>Parte 1 — junte o que você já tem (15 min)</strong><br>
+      Pegue a última receita que você fez para vender. Anote: os ingredientes e quanto pagou em cada um, quanto tempo levou do começo ao fim (contando lavar louça, ir ao mercado e conversar com a cliente — é aqui que quase todo mundo erra), a embalagem, e quanto quer ganhar por hora do seu trabalho.</p>
+      <p style="font-size:14px;color:var(--ink-faint)"><em>Não sabe quanto vale a sua hora? A tela te dá um piso pra começar. Você ajusta na ação 15.</em></p>
+      <p><strong>Parte 2 — faça a conta (10 min)</strong><br>
+      Abra a calculadora e preencha. Ela devolve três números: <strong>o que aquele bolo custou de verdade</strong>, <strong>quanto a sua hora está valendo hoje</strong> e <strong>o preço em que a conta fecha</strong>.</p>
+      <p style="font-size:14px;color:var(--ink-faint)">👉 <em>Se a sua hora vier negativa, não feche a tela achando que errou. Não errou. É essa a conta que você vem fazendo sem ver.</em></p>
+      <p><strong>Parte 3 — trave o número (5 min)</strong><br>
+      Escreva o preço final em algum lugar que não seja só o celular: papel na porta da geladeira, bloco de notas, foto na galeria. O preço deixou de ser opinião. Agora é conta.</p>
+      <p><strong>Parte 4 — mande hoje (20 min)</strong><br>
+      Abra a conversa de alguém que te perguntou preço nos últimos meses e ficou sem resposta boa. Uma pessoa só. Mande o orçamento pronto (logo abaixo — é copiar e trocar os dados).<br>
+      <strong>Não peça desculpa pela demora. Não explique o preço. Não mande o preço sozinho, seco.</strong><br>
+      Mandou? Fecha o celular. A ação 1 acabou.</p>
+      <p style="font-size:14px;color:var(--ink-faint)"><strong>Por que essa é a primeira:</strong> porque em uma hora você sai com preço na mão e uma conversa aberta. Não é aula. É pra fazer hoje.</p>
+    </div>
+
+    <div class="img-slot">
+      <b>Imagem 3</b>
+      Print da área de membros no celular com o texto da ação 1, selo "Ação 1 de 15 · 1 hora · R$0" no topo e o botão "marcar como feita". Produto de verdade, letras legíveis.
+    </div>
+
+    <div class="card">
+      <p class="badge">Um dos 4 scripts, inteiro — "tá caro"</p>
+      <p style="font-size:13.5px;color:var(--ink-faint)"><em>(os outros três: "quanto custa?", "tem um descontinho?" e o sumiço)</em></p>
+      <p><strong>Quando ela disser "nossa, tá caro":</strong></p>
+      <blockquote style="font-family:var(--f-body);font-weight:400;font-size:15.5px;line-height:1.6">
+        "Entendo. Esse valor é do bolo de [SABOR], com [RECHEIO], para [X] pessoas — feito com [INGREDIENTE QUE VOCÊ NÃO TROCA].<br><br>
+        Se não couber agora, eu tenho duas saídas:<br>
+        1) o mesmo bolo numa versão menor, para [Y] pessoas, por R$[__];<br>
+        2) a gente marca para outra data e eu seguro o valor de hoje.<br><br>
+        Qual das duas te ajuda mais?"
+      </blockquote>
+      <p><strong>As três regras, e elas valem mais que o texto:</strong></p>
+      <ul class="list-clean">
+        <li><strong>Você não baixa o preço. Você muda o tamanho.</strong> Desconto ensina a cliente que seu primeiro número era mentira.</li>
+        <li><strong>Você não justifica.</strong> A conta já foi feita — você não precisa defender.</li>
+        <li><strong>Mandou, para de digitar.</strong> O silêncio depois da pergunta é seu, não dela.</li>
+      </ul>
+      <p style="font-size:14px;color:var(--ink-faint)"><strong>E quando ela falar "tá caro" e sumir:</strong> não é não. Na maioria das vezes é "não agora". A ação 5 tem a mensagem exata pra mandar depois, com prazo, sem parecer cobrança.</p>
+    </div>
+
+    <div class="card">
+      <p class="badge">O orçamento pronto</p>
+      <div class="img-slot" style="margin-top:0">
+        <b>Imagem 4</b> — print do orçamento no WhatsApp
+      </div>
+      <blockquote style="font-family:var(--f-body);font-weight:400;font-size:15.5px;line-height:1.7">
+        <strong>Orçamento — [Nome da cliente]</strong><br>
+        Bolo de [sabor], [tamanho], serve [X] pessoas<br>
+        Recheio: [recheio]<br>
+        <strong>R$ [valor]</strong><br>
+        Entrega: [data] · Retirada em [bairro] (ou entrega por R$[__])<br>
+        Para reservar a data: [valor do sinal] agora, o restante na entrega.<br>
+        A data fica sua assim que o sinal entrar — eu não pego outra encomenda nesse dia. 🙂
+      </blockquote>
+      <p style="font-size:14px;color:var(--ink-faint)"><em>Isso vem pronto. Você troca cinco campos e manda.</em></p>
+      <p><strong>Reparou no que esse orçamento faz?</strong> Ele dá preço, prazo, endereço e o que fazer em seguida. A cliente não precisa pensar em nada. Orçamento que deixa a pessoa pensando é orçamento que vira "depois eu te chamo".</p>
+    </div>
+
+    <div class="btn-wrap"><a class="btn" href="#comprar">QUERO IR ATRÁS DAS ENCOMENDAS</a></div>
+  </section>
+
+  <!-- DOBRA 5 — AS TRÊS SEMANAS -->
+  <section>
+    <h2>São 15 ações. Estão todas listadas aqui embaixo.</h2>
+    <h3 style="color:var(--ink-soft);font-weight:600">Uma por dia útil. Fim de semana livre — porque plano que ocupa o seu sábado é plano que você abandona.</h3>
+    <p style="font-size:15px">🕐 1 hora por dia · 🙈 sem aparecer · 👥 sem precisar de seguidor</p>
+    <p style="font-size:15px"><strong>💸 Sobre dinheiro, sem letra miúda:</strong> 14 das 15 ações não custam nada. A única que custa é a degustação — e ela vem depois da ação que te faz calcular quanto vai gastar e quantas encomendas precisa fechar pra pagar.</p>
+
+    <div class="img-slot">
+      <b>Imagem 5</b> — linha do tempo. Três colunas com 15 quadradinhos, os da semana 1 destacados.
+      Selos de relógio, olho cortado, cifrão cortado nas 14 — e na ação 9 um cifrão aceso com
+      "a única com custo, calculado na 8".
+    </div>
+
+    <div class="week">
+      <h4>Semana 1 — quem já te conhece</h4>
+      <p class="week-sub">Aqui ninguém precisa ser convencido de que você faz bolo. A resposta, quando vem, vem em horas.</p>
+      <ol class="acoes">
+        <li>Seu preço definido — e o primeiro orçamento enviado. <em>(a ação aberta aqui em cima)</em></li>
+        <li>A lista das 30: quem no seu WhatsApp já sabe que você faz bolo. E as 15 primeiras mensagens. Não é "compra de mim". É "abri a agenda pra [mês], quer garantir?"</li>
+        <li>As outras 15 — e o script de quando dizem que está caro, sem você baixar o preço por constrangimento.</li>
+        <li>A vitrine: refazer a foto do seu bolo mais bonito com luz de janela, fundo limpo, de cima. E o status do WhatsApp com preço e prazo.</li>
+        <li>Fechar: como pedir sinal sem parecer desconfiada, travar a data, e o que mandar pra quem pediu orçamento e sumiu.</li>
+      </ol>
+      <blockquote style="font-size:16px">No fim da semana 1 você falou com 30 pessoas de verdade.</blockquote>
+    </div>
+
+    <div class="week">
+      <h4>Semana 2 — onde você já está</h4>
+      <ol class="acoes" start="6">
+        <li>Os grupos que já são seus: prédio, mães da escola, igreja, salão, academia. Faz quem pode — e quem não está no grupo pede pra quem está.</li>
+        <li>O grupo do bairro no Facebook, entregando alguma coisa, sem jogar link.</li>
+        <li>Planejar a degustação <strong>e fazer a conta dela</strong>.</li>
+        <li>A degustação. Uma tarde, fatias pequenas, encomenda anotada na hora — com QR code impresso na mesa (o modelo vem pronto, gerar é grátis).</li>
+        <li>O comércio de perto: café, lanchonete, padaria pequena, salão.</li>
+      </ol>
+    </div>
+
+    <div class="week">
+      <h4>Semana 3 — quem repete e quem indica</h4>
+      <ol class="acoes" start="11">
+        <li>O pedido de indicação estruturado, depois de cada entrega.</li>
+        <li>Quem já comprou: a lista dos últimos meses e o retorno com motivo.</li>
+        <li>A próxima data do calendário, avisada com antecedência.</li>
+        <li>Fechar o recorrente: voltar no comércio da ação 10.</li>
+        <li>Seu preço recalculado, sua agenda definida, e a rotina de dez minutos por mês que sobra depois. É a resposta pro "e no dia 16?".</li>
+      </ol>
+    </div>
+
+    <p style="text-align:center;font-style:italic;color:var(--ink-soft)">Bolo bonito vende. Bolo bem precificado sustenta.</p>
+  </section>
+
+  <!-- DOBRA 6 — QUEM FALA -->
+  <section>
+    <h2>Antes de você comprar, três coisas que eu preciso dizer.</h2>
+    <p><strong>1. Isso é novo. Não tem nenhuma aluna ainda.</strong><br>
+    Você não vai encontrar depoimento nesta página, nem foto de mulher sorrindo com print de vendas, nem "mais de X mil alunas". Porque não existe. Eu podia inventar — é o que se faz por aí. Não vou. Se um dia tiver relato de gente de verdade, vai estar aqui com nome e cara, e você vai saber que é real justamente porque hoje não tem nada.</p>
+    <p><strong>2. Você não precisa acreditar em mim: a conta está aberta.</strong><br>
+    A calculadora <strong>A Conta do Bolo</strong> é grátis, está no ar, e você pode usar agora sem pagar e sem comprar nada. Faça a sua. Se o número fizer sentido, isso vale mais que qualquer desconhecida dizendo que deu certo.<br>
+    👉 <a href="/calculadora/">abrir a calculadora</a></p>
+    <p><strong>3. Eu não sou confeiteiro, e isso aqui não ensina a fazer bolo.</strong><br>
+    Não tem receita, não tem massa, não tem bico de confeitar. Você já sabe fazer — é a única coisa que já provou. O que tem aqui é a outra metade: <strong>a conta e as pessoas.</strong></p>
+    <p><strong>A Conta do Bolo</strong> é a marca: a calculadora grátis, os conteúdos, e este plano. Sem guru, sem rosto na parede, sem nome pomposo. <em>(Feito por Roberto.)</em></p>
+    <div class="img-slot">
+      <b>Imagem 6</b> — nada de foto de pessoa. O logo A Conta do Bolo sobre fundo limpo, e ao lado o print da calculadora.
+    </div>
+  </section>
+
+  <!-- DOBRA 7 — O QUE VOCÊ LEVA -->
+  <section id="comprar">
+    <h2>Seis coisas. Nenhuma é bônus, porque bônus inventado é enfeite.</h2>
+    <ol class="acoes">
+      <li><strong>O plano das 15 ações</strong> — uma por dia útil, na ordem, em três semanas. Você não escolhe por onde começar: abre e faz a de hoje.</li>
+      <li><strong>Os 4 scripts das horas difíceis</strong> — "quanto custa?", "tá caro", "tem um descontinho?" e o sumiço. Texto pronto pra copiar, com as regras de uso.</li>
+      <li><strong>A calculadora A Conta do Bolo</strong> — dentro da área de membros, com vídeo mostrando onde tocar. Não precisa instalar nada.</li>
+      <li><strong>O orçamento pronto pra mandar</strong> — o modelo acima, mais variações: com entrega, com sinal, para encomenda grande, para quem só perguntou preço.</li>
+      <li><strong>Os vídeos de gravação de tela</strong> — eu passando o dedo na tela e mostrando onde clicar. Se você mexe no WhatsApp, você dá conta.</li>
+      <li><strong>Os robôs</strong> — textos prontos pra colar no ChatGPT ou no Gemini quando quiser variar a descrição de um bolo ou a mensagem pra um grupo. É o item mais simples, e o último de propósito: se você nunca usar, o plano funciona igual.</li>
+    </ol>
+    <p>➕ <strong>Entra junto:</strong> o modelo do QR code pra imprimir e levar na degustação.</p>
+
+    <h3 style="margin-top:32px">Sobre o preço, três contas honestas</h3>
+    <p><strong>A primeira é a sua.</strong> Você já fez ela aqui em cima, de graça. Se a sua hora está valendo menos do que deveria, isso se repete em cada bolo que sai da sua cozinha. Não é uma vez — é toda vez.</p>
+    <p><strong>A segunda é a da gaveta.</strong> A forma que você comprou e usou uma vez. O curso que começou e não terminou. O corante que ressecou. Foi dinheiro que saiu e não voltou — e você não pediu reembolso de nenhum.</p>
+    <p><strong>A terceira é simples: R$147, uma vez.</strong> Sem mensalidade, sem renovação, sem plano PRO depois.</p>
+
+    <div class="price-block">
+      <p class="eyebrow" style="margin:0">R$147 à vista</p>
+      <p class="price-num">ou em até <span class="pendente">[X]x de R$[VALOR]</span></p>
+      <p style="color:var(--ink-faint);font-size:14px;margin:0">Pagamento único · Compra segura pela Hotmart · 7 dias de garantia</p>
+      <div class="btn-wrap" style="margin-bottom:0">
+        <a class="btn" href="[LINK-DO-CHECKOUT-PENDENTE]">QUERO IR ATRÁS DAS ENCOMENDAS</a>
+      </div>
+    </div>
+
+    <div class="img-slot">
+      <b>Imagem 7</b> — mockup honesto: celular mostrando a lista das 15 ações + selos "Compra segura",
+      "Hotmart", "7 dias". Nada de "de R$497 por R$147" — não existe R$497.
+    </div>
+  </section>
+
+  <!-- DOBRA 8 — GARANTIA -->
+  <section>
+    <h2>7 dias. E eu vou te dizer exatamente como usar.</h2>
+    <p>Você compra, entra e faz. Se em <strong>7 dias</strong> achar que não é isso, pede o dinheiro de volta e recebe tudo. Sem explicar motivo, sem provar que tentou, sem falar comigo.</p>
+    <p><strong>Como se pede:</strong> o pedido é feito <strong>pela Hotmart</strong>, na mesma página de compra que chega no seu e-mail, ou respondendo o e-mail de confirmação. Não depende da minha boa vontade — é um botão da plataforma.</p>
+    <p><strong>E por que a garantia é justa de 7 dias:</strong> porque em 7 dias você já terá feito a semana 1 inteira. <strong>Você vai ter o seu preço na mão e vai ter falado com 30 pessoas de verdade antes do prazo acabar.</strong></p>
+    <p>O que eu não posso garantir, e não vou fingir: quantas pessoas vão responder e quantas vão encomendar. Isso depende do seu bairro, do seu bolo, da época e de quem está do outro lado. O que depende de mim é te dar a conta e a lista. O que depende de você é fazer.</p>
+    <div class="img-slot">
+      <b>Imagem 8</b> — selo simples "7 dias" com o logo da Hotmart. Sem brasão dourado, sem "garantia blindada tripla".
+    </div>
+  </section>
+
+  <!-- DOBRA 9 — FAQ -->
+  <section class="faq">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Não entendo nada de tecnologia. Vou conseguir?</summary><p>Se você manda áudio no WhatsApp, você consegue. Cada parte tem vídeo curto com gravação da tela. A calculadora não precisa ser instalada: abre no navegador do celular.</p></details>
+    <details><summary>Tenho vergonha de aparecer. Vou ter que gravar vídeo?</summary><p>Não. Nenhuma das 15 ações exige o seu rosto, a sua voz ou dançar em vídeo. A única foto que aparece é a do seu bolo, na luz da janela.</p></details>
+    <details><summary>Meu Instagram tem 80 seguidores. Serve?</summary><p>Serve — foi montado pra quem não tem audiência. As ações vão pro seu WhatsApp, o grupo do prédio, a escola, a igreja, o comércio da esquina.</p></details>
+    <details><summary>Já comecei um monte de coisa e nunca terminei.</summary><p>Por isso virou uma ação por dia, na ordem, sem você escolher nada. E acaba: são 15 dias úteis.</p></details>
+    <details><summary>Não tenho uma hora por dia.</summary><p>Pode quebrar em dois blocos de 30 minutos. E é hora fazendo, não estudando.</p></details>
+    <details><summary>Preciso fazer 15 dias seguidos?</summary><p>Não. Importa a ordem, não o calendário. Fim de semana é livre de propósito.</p></details>
+    <details><summary>Como eu recebo, e se eu perder o acesso?</summary><p>Assim que o pagamento é aprovado chega um e-mail da Hotmart com o acesso. Você entra com o e-mail da compra — e é esse login que garante o acesso mesmo se trocar de celular, formatar ou perder o aparelho.</p></details>
+    <details><summary>Quanto custa e como pago?</summary><p>R$147, pagamento único — ou em até <span class="pendente">[X]x de R$[VALOR]</span>. Cartão, Pix ou boleto, pela Hotmart. Sem mensalidade.</p></details>
+    <details><summary>Vou ter que gastar dinheiro nas tarefas?</summary><p>14 das 15 não custam nada. A única que custa é a degustação — e a ação anterior é justamente fazer essa conta. O QR code é grátis de gerar.</p></details>
+    <details><summary>Isso ensina a fazer bolo? Tem receita?</summary><p>Não, e é bom saber antes de comprar.</p></details>
+    <details><summary>Ainda não vendi nada. Serve?</summary><p>Serve. A semana 1 inteira é com gente que já te conhece.</p></details>
+    <details><summary>Preciso de CNPJ?</summary><p>Dá pra começar em casa, vendendo pra conhecidos, como muita gente começa. Quando virar rotina e você passar a anunciar pra desconhecidos, formalizar passa a ser o caminho — e é mais barato e simples do que parece.</p></details>
+    <details><summary>Por quanto tempo tenho acesso?</summary><p class="pendente">[CONFIRMAR NA HOTMART — não publicar "vitalício" sem configurar]</p></details>
+    <details><summary>Tem certificado?</summary><p>Não. Isso não é curso.</p></details>
+    <details><summary>E se eu não gostar?</summary><p>7 dias pra pedir o dinheiro de volta, pela Hotmart, sem explicar nada.</p></details>
+    <details><summary>Se eu travar no meio, falo com quem?</summary><p class="pendente">[CONFIRMAR: Direct do @acontadobolo / e-mail — prometer só o que dá pra responder todo dia]</p></details>
+  </section>
+
+  <!-- DOBRA 10 — CALENDÁRIO -->
+  <section>
+    <h2>A única pressa que existe aqui é a do calendário.</h2>
+    <h3 style="color:var(--ink-soft);font-weight:600">E ela não é minha, é de quem compra bolo.</h3>
+    <p style="font-size:18px"><strong>12 de outubro — Dia das Crianças.</strong><br><strong>Novembro e dezembro — a temporada mais pesada do ano inteiro.</strong></p>
+    <p>Repara: <strong>quem vai receber encomenda em dezembro está sendo escolhida agora.</strong> Ninguém acorda em 20 de dezembro procurando confeiteira no Google. A pessoa encomenda de quem ela <strong>lembra</strong> — e lembra de quem apareceu, avisou e mandou um orçamento decente em outubro.</p>
+    <p>As três semanas cabem antes de qualquer uma dessas datas. Se começar hoje, a ação 13 cai exatamente na hora em que as pessoas estão decidindo.</p>
+    <p><strong>Não tem vaga limitada, não tem lote, não tem contador correndo aqui.</strong> O preço de hoje é o preço de amanhã. Quem tem prazo é o calendário.</p>
+    <div class="img-slot">
+      <b>Imagem 9</b> — calendário de outubro a dezembro com as datas marcadas e, sobreposto, 15 quadradinhos mostrando que as três semanas cabem antes. Nada de ampulheta ou contagem regressiva vermelha.
+    </div>
+    <div class="btn-wrap"><a class="btn" href="#comprar">QUERO IR ATRÁS DAS ENCOMENDAS</a></div>
+  </section>
+
+  <!-- DOBRA 11 — PARA QUEM NÃO É -->
+  <section>
+    <h2>Prefiro te devolver o dinheiro agora não te vendendo.</h2>
+    <ul class="no-list">
+      <li>Se você quer aprender a fazer bolo. Não tem receita aqui.</li>
+      <li>Se você quer viralizar. Não tem fórmula de Reels nem truque de algoritmo. As ações são de bairro.</li>
+      <li>Se você não vai mandar mensagem pra ninguém. 5 das 15 ações são conversas com gente que você já conhece.</li>
+      <li>Se você quer que alguém garanta um número de encomendas. Eu não garanto, e quem garante está te vendendo outra coisa.</li>
+      <li>Se você procura um aplicativo pra organizar pedidos, agenda e caixa. Isso já existe, tem versão grátis e é bom.</li>
+      <li>Se você quer que façam por você. Não é serviço.</li>
+    </ul>
+    <p class="yes-box">✅ Agora, se você faz bolo bom, ouve elogio direto e não recebe encomenda na mesma proporção — é exatamente pra você.</p>
+    <p style="margin-top:20px">Você já provou a parte difícil, que é saber fazer. Falta a parte que ninguém te ensinou, que é a conta e as pessoas.</p>
+    <div class="btn-wrap"><a class="btn" href="#comprar">QUERO IR ATRÁS DAS ENCOMENDAS</a></div>
+    <p style="font-size:14px;color:var(--ink-soft);margin-top:24px"><strong>P.S.</strong> — Você pode fechar esta página e continuar esperando o "depois eu te chamo" virar encomenda. Já deu pra ver quanto isso rende. Ou pode fazer a conta grátis aqui em cima agora, ver o seu número, e decidir com ele na tela.<br>
+    👉 <a href="/calculadora/">fazer a conta</a> · <a href="[LINK-DO-CHECKOUT-PENDENTE]">ir direto pro checkout</a></p>
+  </section>
+
+  <footer>
+    <p><strong>A Conta do Bolo</strong> — <span class="pendente">[RAZÃO SOCIAL / CNPJ PENDENTE]</span></p>
+    <p>Contato: <span class="pendente">[E-MAIL DE CONTATO PENDENTE]</span> · <span class="pendente">[POLÍTICA DE PRIVACIDADE — LINK PENDENTE]</span> · <span class="pendente">[TERMOS DE USO — LINK PENDENTE]</span></p>
+    <p>Este produto não é afiliado, endossado ou vinculado à Hotmart além do processamento de pagamento e área de membros.</p>
+  </footer>
+
+</div>
+</body>
+</html>
