@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Cartão com QR code — A Conta do Bolo</title>
+<title>Seu cartão para a degustação — A Conta do Bolo</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,8 +83,8 @@
 <body>
 <div class="wrap">
   <div class="marca">A Conta do Bolo</div>
-  <h1>Seu cartão com QR code</h1>
-  <p class="intro">Preencha os campos abaixo. O cartão vai se montando sozinho, com o seu nome e o seu QR code. Quando a cliente apontar o celular para o QR, abre uma conversa com você no WhatsApp, já com a mensagem escrita.</p>
+  <h1>Seu cartão para a degustação</h1>
+  <p class="intro">Quem prova e não encomenda na hora costuma esquecer depois. Este cartão fica na mesa para essa pessoa: ela aponta a câmera do celular e cai no seu WhatsApp, com a mensagem já escrita. Preencha abaixo e veja o cartão se montar.</p>
 
   <form id="form" autocomplete="on" onsubmit="return false">
     <div class="campo">
@@ -97,9 +97,9 @@
       <p class="aviso" id="aviso-zap" aria-live="polite"></p>
     </div>
     <div class="campo">
-      <label for="msg">A mensagem que já chega escrita</label>
-      <textarea id="msg" name="msg" maxlength="160">Oi! Provei seu bolo na degustação e quero encomendar.</textarea>
-      <small>A cliente só precisa apertar enviar. Pode mudar o texto como quiser.</small>
+      <label for="msg">A mensagem que a cliente vai te mandar</label>
+      <textarea id="msg" name="msg" maxlength="160">Oi! Provei seu bolo na degustação e fiquei com vontade de encomendar. Como faço?</textarea>
+      <small>Ela chega escrita no celular da cliente, que aperta enviar e a conversa começa. Pode mudar o texto como quiser.</small>
     </div>
     <div class="campo">
       <label for="insta">Seu Instagram <span style="font-weight:400;color:var(--ink-soft)">(opcional)</span></label>
@@ -115,7 +115,8 @@
     <a class="botao secundario" id="testar" href="#" target="_blank" rel="noopener" aria-disabled="true">Testar no WhatsApp</a>
     <button type="button" class="primario" id="imprimir" disabled>Imprimir 4 cartões</button>
   </div>
-  <p class="dica">Toque em <b>Testar no WhatsApp</b> e veja se abre a sua conversa, com a mensagem certa. Depois imprima: saem 4 cartões por folha, é só recortar na linha tracejada. Seus dados ficam só neste aparelho. Não vão para nenhum lugar.</p>
+  <p class="dica">Toque em <b>Testar no WhatsApp</b>. Tem que abrir a sua conversa, com a mensagem que você escreveu. Abriu? Pode imprimir: saem 4 cartões por folha, para recortar na linha tracejada.</p>
+  <p class="dica">O que você digitou fica guardado só neste celular ou computador. Não vem para a gente nem vai para ninguém.</p>
 </div>
 
 <div class="folha" id="folha" aria-hidden="true"></div>
@@ -149,9 +150,9 @@
   function cartao(nome, qrHtml, insta) {
     return '<div class="cartao">' +
       '<div class="nome">' + esc(nome || 'Seu nome aqui') + '</div>' +
-      '<div class="chamada">Gostou? Aponta o celular aqui<br>e fala comigo pra reservar a sua data.</div>' +
+      '<div class="chamada">Gostou? Aponta a câmera do celular aqui<br>e me chama pra encomendar o seu.</div>' +
       '<div class="qr">' + qrHtml + '</div>' +
-      '<div class="rodape">Encomendas pelo WhatsApp' + (insta ? '<br><span class="arroba">' + esc(insta) + '</span>' : '') + '</div>' +
+      '<div class="rodape">Bolos por encomenda' + (insta ? '<br><span class="arroba">' + esc(insta) + '</span>' : '') + '</div>' +
       '</div>';
   }
 
@@ -162,7 +163,7 @@
     if (insta && insta.charAt(0) !== '@') insta = '@' + insta;
     var num = numeroWa($('zap').value);
     var temNumero = digitos($('zap').value).length > 0;
-    $('aviso-zap').textContent = (temNumero && !num) ? 'Confira o número: são o DDD e mais 8 ou 9 dígitos.' : '';
+    $('aviso-zap').textContent = (temNumero && !num) ? 'Confira o número: é o DDD e mais 8 ou 9 números.' : '';
 
     var qrHtml, link = null;
     if (num && window.qrcode) {
@@ -171,7 +172,7 @@
     } else if (num) {
       qrHtml = '<div class="vazio">Não deu para montar o QR code. Confira a internet e recarregue a página.</div>';
     } else {
-      qrHtml = '<div class="vazio">O QR code aparece aqui quando você preencher o WhatsApp</div>';
+      qrHtml = '<div class="vazio">O QR code aparece aqui depois que você colocar o seu WhatsApp</div>';
     }
 
     var um = cartao(nome, qrHtml, insta);
